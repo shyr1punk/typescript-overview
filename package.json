@@ -12,5 +12,9 @@
     "yandex"
   ],
   "author": "sivashev <sivashev@yandex-team.ru>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^16.4.17",
+    "react": "^16.5.2"
+  }
 }
