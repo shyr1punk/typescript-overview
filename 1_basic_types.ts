@@ -86,7 +86,7 @@ implicitTypedArray;
 // типизируется на основании анализа кода по входящим в него элементам
 
 
-implicitTypedArray.filter(v => v.toFixed() < 10);
+// implicitTypedArray.filter(v => v.toFixed() < 10);
 //                             ^^^^^^^^^^^^^ - ошибка найдена благодаря анализу кода
 
 
