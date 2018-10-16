@@ -1,0 +1,16 @@
+{
+  "name": "typescript-syntax",
+  "version": "1.0.0",
+  "description": "Yandex frontend development school lecture",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "typescript",
+    "frontend",
+    "yandex"
+  ],
+  "author": "sivashev <sivashev@yandex-team.ru>",
+  "license": "ISC"
+}
