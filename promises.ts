@@ -1,13 +1,13 @@
+/**
+ * Promises
+ */
+
 const promise = new Promise<number>((resolve, reject) => {
     resolve(123);
 });
 
 promise.then((res) => {
     res.toFixed();
-});
-
-promise.catch((err) => {
-    // This is never called
 });
 
 
@@ -22,12 +22,12 @@ function iReturnPromiseAfter1Second() {
 
 Promise
     .resolve(123)
-    .then(() => {
-        // res is inferred to be of type `number`
-        return iReturnPromiseAfter1Second(); // We are returning `Promise<string>`
+    .then((res) => {
+        // ^^^ выведен тип number
+        return iReturnPromiseAfter1Second();
     })
     .then((res) => {
-        // res is inferred to be of type `string`
+        // ^^^ выведен тип string
         console.log(res); // Hello world!
     });
 
