@@ -27,8 +27,12 @@ interface Props {
     onInputChange(text: string): void;
 }
 
-
-class Child extends React.Component<Props, State> {
+/**
+ * Awesome child component
+ *
+ * Use with awesome parent component
+ */
+export default class Child extends React.Component<Props, State> {
     state = {
         counter: 0
     }
@@ -38,8 +42,9 @@ class Child extends React.Component<Props, State> {
             <div>
                 <div>{this.props.name}</div>
                 {
-                    this.props.born &&
+                    this.props.born && // <<=== number | undefined
                         <div>{(new Date()).getFullYear() - this.props.born}</div>
+                        //                                 ^^^^^^^^^^^^^^^ number
                 }
                 <button onClick={() => {
                     this.setState({
@@ -53,19 +58,6 @@ class Child extends React.Component<Props, State> {
                 } />
                 <div>{this.state.counter}</div>
             </div>
-        );
-    }
-}
-
-
-export default class Parent extends React.Component {
-    render() {
-        return (
-            <Child
-                name='Alex'
-                born={29}
-                onInputChange={(text) => { console.log(text); }}
-            />
         );
     }
 }
