@@ -21,6 +21,8 @@ enum Direction2 {
 }
 
 
-function goTo(dir: Direction2, speed: number = 10): void {}
+function goTo(dir: Direction2): void {
+    console.log(dir); // Строковое значение перечисления
+}
 
 goTo(Direction2.Up);

@@ -44,17 +44,17 @@ Promise
 
 
 
-// an async function to simulate loading an item from some server
+// Асинхронная функция, которая эмулирует загрузку по сети
 function loadItem(id: number) {
     return new Promise<{ id: number }>((resolve) => {
         console.log('loading item', id);
-        setTimeout(() => { // simulate a server delay
+        setTimeout(() => {
             resolve({ id: id });
         }, 1000);
     });
 }
 
-// Chaining
+// Цепочка промисов
 let item1, item2;
 loadItem(1)
     .then((res) => {
@@ -64,11 +64,11 @@ loadItem(1)
     .then((res) => {
         item2 = res;
         console.log('done');
-    }); // overall time will be around 2s
+    });
 
-// Parallel
+// Параллельное выполенение
 Promise.all([loadItem(1), loadItem(2)])
     .then((res) => {
         const [item1, item2] = res;
         console.log('done');
-    }); // overall time will be around 1s
+    });

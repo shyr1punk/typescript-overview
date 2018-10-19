@@ -38,21 +38,6 @@ const identityResult = [1, 2, 3].map(identity)
 
 
 /**
- * более сложный пример
- */
-function loggingIdentity<T>(arg: T[]): T[] {
-    console.log(arg.length);
-    return arg;
-}
-
-const res = loggingIdentity(['1']);
-const res2 = loggingIdentity(['1', 2]);
-// const res3 = loggingIdentity<string>(['1', 2]);
-
-
-
-
-/**
  * Обобщённые интерфейсы
  */
 

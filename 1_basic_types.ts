@@ -125,33 +125,6 @@ x = ["hello", 10];
 
 
 
-
-/**
- * Any
- *
- * Отключает проверку типов на этапе компиляции
- * Используется, когда вы не знаете типа
- */
-
-
-let notSure: any = 4;
-notSure = "maybe a string instead";
-notSure = false;
-
-notSure.ifItExists(); // okay, ifItExists might exist at runtime
-notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
-
-let list3: any[] = [1, true, "free"];
-list3[1] = 100;
-
-
-
-
-
-
-
-
-
 /**
  * Void
  *
@@ -160,8 +133,6 @@ list3[1] = 100;
 
 /**
  * Чаще всего указывает на то, что функция не возвращает значения
- *
- * Может быть выведен
  */
 function warnUser(): void {
     console.log("This is my warning message");
@@ -201,11 +172,8 @@ let n: null = null;
 
 
 
-
-// In cases where you want to pass in either a string or null or undefined, you can use the union type string | null | undefined. Once again, more on union types later on.
-
-
-
+let impossibleNull: string;
+let possibleNull: string | null;
 
 
 
@@ -267,13 +235,9 @@ create(null); // OK
  * Type assertion
  *
  * Позволяет указать компилятору на необходимый тип
- *
- *
- * !!!!! Пример с наследованием: чтобы можно было скастовать до подтипа
  */
 
-let someValue: any = "this is a string";
-
-let strLength = (<string>someValue).length; // не работает в JSX
-let strLength2: number = (someValue as string).length;
-
+function handler (event: Event) {
+    // event.offsetX; // ошибка
+    (event as MouseEvent).offsetX;
+}
