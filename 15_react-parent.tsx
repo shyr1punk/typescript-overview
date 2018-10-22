@@ -13,7 +13,7 @@
 
 import * as React from 'react';
 
-import Child from './12_react-child';
+import Child from './16_react-child';
 
 export default class Parent extends React.Component {
     render() {

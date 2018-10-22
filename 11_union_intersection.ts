@@ -1,5 +1,5 @@
 /**
- * Продвинутая работа с типами
+ * Объединения и пересечения типов
  */
 
 /**
@@ -8,27 +8,10 @@
 
 
 
-/**
- * Объединение литеральных типов
- */
-
-// Объявим переменную с объединением типов строковых литералов
-let direction: 'up' | 'right' | 'down' | 'left';
-
-// direction =
-// попробуем присвоить значение
-// typescript подсказываем возможные значения и не даёт ввести неправильное
-
-
-// можно создавать свои типы
-type Directions = 'up' | 'right' | 'down' | 'left';
-// let whereToGo: Directions =
-
-
 
 
 /**
- * Объединение примитивных типовs
+ * Объединение примитивных типов
  */
 
 
@@ -36,7 +19,7 @@ let stringOrNumber: string | number = 'string initializer';
 
 stringOrNumber = 4;
 
-//stringOrNumber = null;
+// stringOrNumber = null;
 // работает флаг --strictNullChecks
 
 
@@ -45,15 +28,15 @@ stringOrNumber = 4;
  * Объединение структурных типов
  */
 
-interface Colored {
+type Colored = {
     color: string;
 }
 
-interface Visible {
+type Visible = {
     visible: boolean;
 }
 
-interface Size {
+type Size = {
     height: number;
     width: number;
     deep: number;
@@ -68,8 +51,9 @@ let coloredVisibleSize: ColoredVisibleSizeUnion = {
     // unknownProp: 1
 }
 
-// coloredVisibleSize.width;
 
+// coloredVisibleSize.width;
+// coloredVisibleSize.sdfsdf;
 
 /**
  * Пересечение типов (type intersection)
@@ -110,7 +94,7 @@ type ColoredVisibleSizeIntersection = Colored & Visible & Size;
 // должна содержать все поля типов, которые есть в пересечении
 let coloredVisibleSizeIntersection: ColoredVisibleSizeIntersection = {
     color: 'sdf',
-    visible: false,
+    visible: false, // never!!!!!
     height: 1,
     width: 2,
     deep: 3
@@ -118,3 +102,6 @@ let coloredVisibleSizeIntersection: ColoredVisibleSizeIntersection = {
 
 
 coloredVisibleSizeIntersection.width;
+
+
+

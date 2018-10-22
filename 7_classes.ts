@@ -26,16 +26,16 @@ class FooBase {
 
 var foo = new FooBase();
 foo.x;
-foo.y;
-foo.z;
-foo.visible = true;
+// foo.y;
+// foo.z;
+// foo.visible = true;
 
 
 class FooChild extends FooBase {
     constructor() {
       super();
         this.x;
-        this.y;
+        // this.y;
         this.z;
     }
 }
@@ -62,7 +62,7 @@ abstract class Animal {
     }
 }
 
-const animal = new Animal();
+// const animal = new Animal();
 
 class Cat extends Animal {
     makeSound() {
@@ -75,19 +75,4 @@ const cat = new Cat();
 
 
 
-/**
- * Class interface
- *
- * Позволяет описывать контракт, которому должен соответствовать класс
- */
 
-interface SomeInterface {
-    add(a: number, b: number): number;
-    // foo(): void;
-}
-
-class SomeClass implements SomeInterface {
-    add(c: number, d: number) {
-        return c + d;
-    }
-}

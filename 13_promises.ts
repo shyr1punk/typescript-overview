@@ -14,28 +14,6 @@ promise.then((res) => {
 
 
 
-function iReturnPromiseAfter1Second() {
-    return new Promise<string>((resolve) => {
-        setTimeout(() => resolve("Hello world!"), 1000);
-    });
-}
-
-Promise
-    .resolve(123)
-    .then((res) => {
-        // ^^^ выведен тип number
-        return iReturnPromiseAfter1Second();
-    })
-    .then((res) => {
-        // ^^^ выведен тип string
-        console.log(res); // Hello world!
-    });
-
-
-
-
-
-
 
 
 
@@ -55,14 +33,13 @@ function loadItem(id: number) {
 }
 
 // Цепочка промисов
-let item1, item2;
 loadItem(1)
     .then((res) => {
-        item1 = res;
+        let item1 = res;
         return loadItem(2);
     })
     .then((res) => {
-        item2 = res;
+        let item2 = res;
         console.log('done');
     });
 

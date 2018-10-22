@@ -1,5 +1,7 @@
 /**
  * Базовые типы
+ *
+ * Это примитивные типы из JavaScript и некоторые специальные типы
  */
 
 
@@ -17,13 +19,6 @@ let falsy = false;
 // выведенный тип - неявная типизация
 // inferred type - implicit typing
 
-const literalConst = false;
-// выведенный литеральный тип
-
-let explicitTypedVariable: false;
-explicitTypedVariable = false;
-// explicitTypedVariable = true;
-// ^^^^^^^^^^^^^^^^^^^^^ ошибка
 
 
 
@@ -38,11 +33,8 @@ let binary: number = 0b1010;
 let octal: number = 0o744;
 
 
-// минимально-возможный общий тип
+// выведен минимально-возможный общий тип
 let inferredNumber = 6;
-// литеральный тип
-const literalNumber = 6;
-
 
 
 
@@ -69,8 +61,8 @@ let list: number[] = [1, 2, 3];
 let list2: Array<number> = [1, 2, 3];
 
 
-list.pop();
-// подсказки методов
+const listElem = list.pop();
+// подсказки методов и возвращаемых значений
 
 list.some(e => e > 10)
 // подсказки типов элементов
@@ -172,12 +164,11 @@ let n: null = null;
 
 
 
-let impossibleNull: string;
-let possibleNull: string | null;
+let possibleNull: string | null = null;
 
 
-
-
+// Нельзя присвоить null не nullable типу
+// let impossibleNull: string = null;
 
 
 
@@ -230,14 +221,3 @@ create(null); // OK
 
 
 
-
-/**
- * Type assertion
- *
- * Позволяет указать компилятору на необходимый тип
- */
-
-function handler (event: Event) {
-    // event.offsetX; // ошибка
-    (event as MouseEvent).offsetX;
-}
