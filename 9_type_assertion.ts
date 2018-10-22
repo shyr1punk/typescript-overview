@@ -17,8 +17,8 @@ document.querySelector('.hey');
 
 
 
-let nameInput = document.querySelector('.name-input') as HTMLInputElement;
+let nameInput = document.querySelector('.name-input') as HTMLInputElement | null;
 // Второй вариант записи - не работает в JSX
-// nameInput = <HTMLInputElement>document.querySelector('.name-input');
+// nameInput = <HTMLInputElement | null>document.querySelector('.name-input');
 
-const userName = nameInput.value;
+const userName = nameInput && nameInput.value;

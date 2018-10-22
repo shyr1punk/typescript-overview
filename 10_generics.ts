@@ -15,7 +15,7 @@
 function identity<T>(arg: T): T {
     return arg;
 }
-// Явная передача типа дженерика
+// Явная передача типа обобщения
 let idVal1 = identity<string>('sdf')
 
 // Неявный вывод типа дженерика на основании типа входного параметра
@@ -26,8 +26,6 @@ let idVal3 = identity({
     c: 3
 });
 
-
-const identityResult = [1, 2, 3].map(identity)
 
 
 

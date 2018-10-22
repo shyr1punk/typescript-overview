@@ -24,36 +24,7 @@ stringOrNumber = 4;
 
 
 
-/**
- * Объединение структурных типов
- */
 
-type Colored = {
-    color: string;
-}
-
-type Visible = {
-    visible: boolean;
-}
-
-type Size = {
-    height: number;
-    width: number;
-    deep: number;
-}
-
-type ColoredVisibleSizeUnion = Colored | Visible | Size;
-
-let coloredVisibleSize: ColoredVisibleSizeUnion = {
-    color: 'df',
-    visible: false,
-    height: 1,
-    // unknownProp: 1
-}
-
-
-// coloredVisibleSize.width;
-// coloredVisibleSize.sdfsdf;
 
 /**
  * Пересечение типов (type intersection)
@@ -86,6 +57,19 @@ let a: 'yes' & 'no';
  * Пересечение структурных типов
  */
 
+type Colored = {
+    color: string;
+}
+
+type Visible = {
+    visible: boolean;
+}
+
+type Size = {
+    height: number;
+    width: number;
+    deep: number;
+}
 
 
 type ColoredVisibleSizeIntersection = Colored & Visible & Size;

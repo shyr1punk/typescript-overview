@@ -29,9 +29,9 @@ function add3(x: number, y: number, z?: number) {
     return x + y;
 }
 
-add3(1, 2, 3);
+add3(1, 2, 3); // returns 6
 
-add3(1, 2)
+add3(1, 2); // returns 3
 
 
 
@@ -47,6 +47,6 @@ function addDefault(x: number, y: number, z: number = 5): number {
     return x + y + z;
 }
 
-addDefault(1, 2)
+addDefault(1, 2); // returns 3
 
-addDefault(1, 2, 3)
+addDefault(1, 2, 3); // returns 6
