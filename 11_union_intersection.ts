@@ -94,7 +94,7 @@ type ColoredVisibleSizeIntersection = Colored & Visible & Size;
 // должна содержать все поля типов, которые есть в пересечении
 let coloredVisibleSizeIntersection: ColoredVisibleSizeIntersection = {
     color: 'sdf',
-    visible: false, // never!!!!!
+    visible: false, // never в случае одинаковых полей разных типов
     height: 1,
     width: 2,
     deep: 3
