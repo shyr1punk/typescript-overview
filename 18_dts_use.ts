@@ -1,5 +1,5 @@
 import getLineHeight from 'line-height';
 
 
-getLineHeight(document.createElement('div'));
+getLineHeight(document.createElement('textarea'));
 

@@ -57,22 +57,22 @@ let a: 'yes' & 'no';
  * Пересечение структурных типов
  */
 
-type Colored = {
+interface Colored {
     color: string;
 }
 
-type Visible = {
+interface Visible {
     visible: boolean;
 }
 
-type Size = {
+interface Size {
     height: number;
     width: number;
     deep: number;
 }
 
 
-type ColoredVisibleSizeIntersection = Colored & Visible & Size;
+interface ColoredVisibleSizeIntersection extends Colored, Visible, Size {};
 
 
 // должна содержать все поля типов, которые есть в пересечении

@@ -15,7 +15,7 @@
 
 
 declare module 'line-height' {
-    function getLineHeight(element: HTMLElement): number;
+    function getLineHeight(element: HTMLTextAreaElement): number;
 
     export = getLineHeight;
 }

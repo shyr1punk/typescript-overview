@@ -22,7 +22,7 @@ interface Props {
     /** Имя */
     name: string;
     /** Год рождения */
-    born?: number;
+    die?: number;
     /** Действие при изменении значения поля ввода */
     onInputChange(text: string): void;
 }
@@ -42,8 +42,8 @@ export default class Child extends React.Component<Props, State> {
             <div>
                 <div>{this.props.name}</div>
                 {
-                    this.props.born && // <<=== number | undefined
-                        <div>{(new Date()).getFullYear() - this.props.born}</div>
+                    this.props.die && // <<=== number | undefined
+                        <div>{(new Date()).getFullYear() - this.props.die}</div>
                         //                                 ^^^^^^^^^^^^^^^ number
                 }
                 <button onClick={() => {

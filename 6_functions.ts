@@ -10,7 +10,7 @@ let myAdd = (x: number, y: number): number => x + y;
 
 add(1, 2);
 
-// const addResult = myAdd(1, '2');
+// const addResult: string = myAdd(1, 2);
 
 
 

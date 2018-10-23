@@ -87,7 +87,7 @@ const book: Book = {
     year: 1869
 }
 
-// book.author.length;
+// book.author && book.author.length;
 // book.title = 'На дне'
 
 

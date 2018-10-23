@@ -30,7 +30,6 @@ str1 = str2;
 
 interface Named {
     name: string;
-    // foo: number;
 }
 
 class Person {
