@@ -22,6 +22,7 @@ lib.add(1, 2);
 lib.remove();
 
 
+// TODO: явный any
 
 
 /**
