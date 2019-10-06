@@ -99,14 +99,17 @@ const book: Book = {
  * В большинстве случаем псевдоним структурного типа совместим с интерфейсом с такой-же структурой
  */
 type Square = {
-    kind: "square";
+    readonly kind: "square";
     size: number;
 }
 
+// interface Square {
+//     readonly kind: "square";
+//     size: number;
+// }
 
-
-type Rectangle = {
-    kind: "rectangle";
-    width: number;
-    height: number;
+const asd: Square = {
+    kind: "square",
+    size: 3
 }
+// asd.kind = "";

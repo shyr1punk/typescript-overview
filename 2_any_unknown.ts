@@ -8,6 +8,7 @@
  */
 
 
+// не делайте @ts-ignore
 // @ts-ignore
 import * as lib from './lib.js';
 
@@ -19,8 +20,6 @@ const libName = lib.name;
 lib.add(1, 2);
 
 lib.remove();
-
-
 
 
 
@@ -52,9 +51,11 @@ const unknownLib: unknown = lib;
  *
  * "Защитник типа" принимает любой объект и возвращает результат, является ли объект некоторым типом
  */
-function hasAddFunction(obj: any): obj is {
-    add: (a: number, b: number) => number
-} {
+type WithAddFunction = {
+    add: (a: number, b: number) => number;
+}
+
+function hasAddFunction(obj: any): obj is WithAddFunction {
     return obj && typeof obj.add === 'function';
 }
 

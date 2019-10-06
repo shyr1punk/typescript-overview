@@ -22,7 +22,7 @@ interface Props {
     /** Имя */
     name: string;
     /** Год рождения */
-    die?: number;
+    born?: number;
     /** Действие при изменении значения поля ввода */
     onInputChange(text: string): void;
 }
@@ -33,17 +33,25 @@ interface Props {
  * Use with awesome parent component
  */
 export default class Child extends React.Component<Props, State> {
-    state = {
-        counter: 0
+    constructor(props: Props) {
+        super(props);
+        this.state = { counter: 0 };
     }
 
+    // readonly state: Readonly<State> = {
+    //     counter: 0
+    // }
+
     render() {
+        // this.props.name = 'Name';
+        // this.state.counter = 2;
+
         return (
             <div>
                 <div>{this.props.name}</div>
                 {
-                    this.props.die && // <<=== number | undefined
-                        <div>{(new Date()).getFullYear() - this.props.die}</div>
+                    this.props.born && // <<=== number | undefined
+                        <div>{(new Date()).getFullYear() - this.props.born}</div>
                         //                                 ^^^^^^^^^^^^^^^ number
                 }
                 <button onClick={() => {

@@ -221,3 +221,48 @@ create(null); // OK
 
 
 
+
+
+
+/**
+ * Коллекции
+ */
+
+
+const simpleArray: string[] = [];
+// simpleArray.push(1);
+simpleArray.push('2');
+
+
+
+
+
+/**
+ * Readonly arrays
+ */
+
+const ro_bar: readonly string[] = ['a', 'b', 'b'];
+const ro_bar1: Readonly<Array<string>> = ['a', 'b', 'b'];
+const ro_bar2: ReadonlyArray<string> = ['a', 'b', 'b'];
+
+// ro_bar[3] = 'noooooo!';
+// ro_bar1[3] = 'noooooo!';
+// ro_bar2[3] = 'noooooo!';
+// Index signature in type 'readonly string[]' only permits reading.
+
+
+/**
+ * Readonly objects
+ */
+
+interface A {
+    name: string;
+    size: number;
+}
+
+const readonlyAVar: Readonly<A> = {
+    name: 'sdf',
+    size: 23
+};
+
+// readonlyAVar.name = 'sdf';

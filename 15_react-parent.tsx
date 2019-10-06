@@ -20,7 +20,7 @@ export default class Parent extends React.Component {
         return (
             <Child
                 name='Alex'
-                die={29}
+                born={29}
                 onInputChange={(text) => { console.log(text); }}
             />
         );

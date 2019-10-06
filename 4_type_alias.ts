@@ -10,6 +10,16 @@ type myString = string;
 type stringOrNumber = string | number;
 
 
+let str: myString;
+let strOrNum: stringOrNumber;
+
+str = 'str';
+strOrNum = 1;
+strOrNum = 'string';
+
+
+
+
 
 
 

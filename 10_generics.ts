@@ -8,29 +8,6 @@
 
 
 
-/**
- * Hello World из мира обобщённого программирования
- */
-
-function identity<T>(arg: T): T {
-    return arg;
-}
-// Явная передача типа обобщения
-let idVal1 = identity<string>('sdf')
-
-// Неявный вывод типа дженерика на основании типа входного параметра
-let idVal2 = identity(1213)
-let idVal3 = identity({
-    a: 1,
-    b: 2,
-    c: 3
-});
-
-
-
-
-
-
 
 
 /**
@@ -42,6 +19,17 @@ interface Item {
     age: number
 }
 
+
+const myArray = new Array<Item>();
+// Эквивалентно
+// const myArray: Item[] = [];
+
+myArray.push({ name: 'John', age: 20 });
+myArray.push({ name: 'Ann', age: 25 });
+// myArray.push({ name: 'Rachel' });
+// myArray.push({});
+
+///myArray[0].
 
 
 const myMap = new Map<string, Item>();
@@ -73,18 +61,18 @@ const value1 = myMapValuesIterator.next().value;
  */
 
 
-interface GenericIdentityFn<T> {
-    (arg: T): T;
+interface GenericPlusFn<T> {
+    (a: T, b: T): T;
 }
 
 // Работает только с числами
-let myNumberIdentity: GenericIdentityFn<number> = (arg) => arg;
+let addFn: GenericPlusFn<number> = (a, b) => a + b;
 // Работает только со строками
-let myStringIdentity: GenericIdentityFn<string> = (arg) => arg;
+let concatFn: GenericPlusFn<string> = (a, b) => `${a} bla ${b}`;
 
 
-
-
+let addRes = addFn(1, 2);
+// let addRes2 = addFn(1, '2');
 
 
 
@@ -161,3 +149,77 @@ let s = people.name;
 // s = people.next.name;
 // s = people.next.next.name;
 // s = people.next.next.next.name;
+
+
+function printNames(person?: LinkedList<Person>) {
+    if (!person) {
+        return;
+    }
+
+    console.log(person.name);
+
+    printNames(person.next);
+}
+
+
+
+
+/**
+ * Пример с функцией получения свойства объекта
+ */
+
+
+
+
+enum CarClass {
+    F1,
+    Nascar,
+    Lehmann
+}
+
+interface ICar {
+    class: CarClass;
+    weight: number;
+    speed: number;
+    acceleration: number;
+}
+
+type KeyOfICar = keyof ICar; // type | weight | speed | acceleration
+
+
+function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+}
+
+const mercedesF1: ICar = {
+    class: CarClass.F1,
+    weight: 775,
+    speed: 420,
+    acceleration: 1.2
+};
+
+// autocomplete
+const type = getProperty(mercedesF1, 'class');
+// Type: CarClass
+
+
+// const fuel = getProperty(mercedesF1, 'fuel');
+// Error → Argument of type '"fuel"' is not assignable to parameter of type '"class" | "weight" | "speed" | "acceleration"'.
+
+
+
+/**
+ * keyof typeof something;
+ */
+
+
+const someObj = {
+    one: 1,
+    two: 2,
+    three: 'three'
+};
+
+type SomeObj = typeof someObj;
+
+type KeyOfSomeObj = keyof typeof someObj;
+
