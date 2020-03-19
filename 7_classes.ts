@@ -9,7 +9,7 @@
 
 
 /**
- * Модификаторы доступа
+ * Модификаторы доступа - работают только во время компиляции
  *
  * - public
  * - private
@@ -26,16 +26,16 @@ class FooBase {
 
 var foo = new FooBase();
 foo.x;
-// foo.y;
-// foo.z;
-// foo.visible = true;
+foo.y; // Property 'y' is private and only accessible within class 'FooBase'.ts(2341)
+foo.z; // Property 'z' is protected and only accessible within class 'FooBase' and its subclasses.ts(2445)
+foo.visible = true; // Cannot assign to 'visible' because it is a read-only property.ts(2540)
 
 
 class FooChild extends FooBase {
     constructor() {
       super();
         this.x;
-        // this.y;
+        this.y; // Property 'y' is private and only accessible within class 'FooBase'.ts(2341)
         this.z;
     }
 }
@@ -62,7 +62,8 @@ abstract class Animal {
     }
 }
 
-// const animal = new Animal();
+// ошибка создания экземпляра абстрактного класса
+const animal = new Animal();
 
 class Cat extends Animal {
     makeSound() {

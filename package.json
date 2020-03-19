@@ -14,7 +14,7 @@
   "author": "sivashev <sivashev@yandex-team.ru>",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "^16.4.17",
-    "react": "^16.5.2"
+    "@types/react": "^16.9.25",
+    "react": "^16.13.1"
   }
 }
