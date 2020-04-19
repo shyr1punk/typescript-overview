@@ -1,4 +1,3 @@
-
 /**
  * Type assertion
  *
@@ -63,8 +62,9 @@ document.querySelector('.name-input');
 
 
 
+let anyElement = document.querySelector('.name-input');
 let nameInput = document.querySelector('.name-input') as HTMLInputElement | null;
 // Второй вариант записи - не работает в JSX
-nameInput = <HTMLInputElement | null>document.querySelector('.name-input');
+let nameInput2 = <HTMLInputElement | null>document.querySelector('.name-input');
 
 const userName = nameInput && nameInput.value;

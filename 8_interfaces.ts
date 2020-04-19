@@ -61,8 +61,8 @@ const book: Book = {
     year: 1869
 }
 
-// book.author && book.author.length;
-// book.title = 'На дне'
+book.author.length;
+book.title = 'На дне'
 
 
 
@@ -86,6 +86,7 @@ type Square = {
     size: number;
 }
 
+// В примере тип может быть заменён интерфейсом
 // interface Square {
 //     readonly kind: "square";
 //     size: number;
@@ -95,7 +96,7 @@ const asd: Square = {
     kind: "square",
     size: 3
 }
-// asd.kind = "";
+asd.kind = "";
 
 
 
