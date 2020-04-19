@@ -13,8 +13,7 @@
   ],
   "author": "sivashev <sivashev@yandex-team.ru>",
   "license": "ISC",
-  "dependencies": {
-    "@types/react": "^16.9.25",
-    "react": "^16.13.1"
+  "devDependencies": {
+    "typescript": "^3.8.3"
   }
 }
