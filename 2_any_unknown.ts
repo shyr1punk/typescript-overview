@@ -5,26 +5,7 @@
  *
  * Чаще всего выводится компилятором для структур неизвестного типа
  * Например при импорте нетипизированных javascript библиотек
- */
-
-
-// не делайте @ts-ignore
-// @ts-ignore
-import * as lib from './lib.js';
-
-
-
-
-const libName = lib.name;
-
-lib.add(1, 2);
-
-lib.remove();
-
-
-
-
-/**
+ *
  * Unknown
  *
  * Тип неизвестен, но для операций необходимо добавлять проверки
@@ -32,36 +13,34 @@ lib.remove();
  */
 
 
+
+
+declare const anyValue: any;
+declare const unknownValue: unknown;
+
 /**
- * Переменная типа unknown
+ * any - можно сделать любую операцию
  */
-
-const unknownLib: unknown = lib;
-
-
-
-// unknownLib.add(1, 2) // <<<===== Ошибка
-
-
+anyValue(); // TypeError: undefined is not a function;
 
 
 
 /**
- * Type guard
- *
- * "Защитник типа" принимает любой объект и возвращает результат, является ли объект некоторым типом
+ * unknown - перед использованием нужно убедится в возможности операции
  */
-type WithAddFunction = {
-    add: (a: number, b: number) => number;
+unknownValue();
+
+if (typeof unknownValue === 'function') {
+    unknownValue();
 }
 
-function hasAddFunction(obj: any): obj is WithAddFunction {
-    return obj && typeof obj.add === 'function';
+
+
+
+
+/**
+ * Если у функции параметры не объявлены явно компилятор выводит тип any
+ */
+function anyParamsAddFunction(a, b) {
+    return a + b;
 }
-
-
-// Теперь после проверки с помощью type guard можно обратиться к add
-if (hasAddFunction(unknownLib)) {
-    console.log(unknownLib.add(1, 2));
-}
-

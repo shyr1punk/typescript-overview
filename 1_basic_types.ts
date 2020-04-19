@@ -2,6 +2,20 @@
  * Базовые типы
  *
  * Это примитивные типы из JavaScript и некоторые специальные типы
+ *
+ *
+ * Boolean              - булев тип
+ * Number               - числа
+ * String               - строки
+ * Array                - массивы
+ * Tuple                - кортежи
+ * Enum                 - перечисления
+ * Any                  - любой тип (отключает статическую проверку типов)
+ * Void                 - пустой тип
+ * Never                - тип для вы
+ * Object               - любой не примитивный тип
+ * Null and Undefined   - Null and Undefined
+ * Symbol               - Symbol
  */
 
 
@@ -78,61 +92,8 @@ implicitTypedArray;
 // типизируется на основании анализа кода по входящим в него элементам
 
 
-// implicitTypedArray.filter(v => v.toFixed() < 10);
+implicitTypedArray.filter(v => v.toFixed() < 10);
 //                             ^^^^^^^^^^^^^ - ошибка найдена благодаря анализу кода
-
-
-
-
-
-
-
-
-/**
- * Tuple
- *
- * Кортеж — упорядоченный набор элементов известных типов фиксированной длины
- */
-
-
-let x: [string, number];
-//     ^^^^^^^^^^^^^^^^ аннотация типа кортеж
-
-x = ["hello", 10];
-
-// x = [10, "hello"];
-// Ошибка - типы кортежа не соответствуют декларации
-
-
-// x[2] = 'sdfsdf';
-// Ошибка - в кортеже нет элемента с индексом 2
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Void
- *
- * Пустой тип
- */
-
-/**
- * Чаще всего указывает на то, что функция не возвращает значения
- */
-function warnUser(): void {
-    console.log("This is my warning message");
-}
-
-// декларация переменой типа void не очень полезна
-// ей можно присвоить только значения null или undefined
-let unusable: void = undefined;
 
 
 
@@ -167,34 +128,10 @@ let n: null = null;
 let possibleNull: string | null = null;
 
 
-// Нельзя присвоить null не nullable типу
-// let impossibleNull: string = null;
+// Нельзя присвоить null не nullable типу со вклёченном флагом --strictNullChecks
+let impossibleNull: string = null;
 
 
-
-
-
-/**
- * Never
- *
- * Обозначает результат, который никогда не случится
- */
-
-
-// Функция возвращает never когда в ней безусловно брошена ошибка
-function error(message: string): never {
-    throw new Error(message);
-}
-
-// тип never выведен
-function fail() {
-    return error("Something failed");
-}
-
-// Функция возвращает never когда в ней недостижим конец
-function infiniteLoop(): never {
-    while (true) {}
-}
 
 
 
@@ -211,58 +148,12 @@ declare function create(o: object | null): void;
 create({ prop: 0 }); // OK
 create(null); // OK
 
-// create(42); // Error
-// create("string"); // Error
-// create(false); // Error
-// create(undefined); // Error
+create(42); // Error
+create("string"); // Error
+create(false); // Error
+create(undefined); // Error
 
 
 
 
 
-
-
-
-
-/**
- * Коллекции
- */
-
-
-const simpleArray: string[] = [];
-// simpleArray.push(1);
-simpleArray.push('2');
-
-
-
-
-
-/**
- * Readonly arrays
- */
-
-const ro_bar: readonly string[] = ['a', 'b', 'b'];
-const ro_bar1: Readonly<Array<string>> = ['a', 'b', 'b'];
-const ro_bar2: ReadonlyArray<string> = ['a', 'b', 'b'];
-
-// ro_bar[3] = 'noooooo!';
-// ro_bar1[3] = 'noooooo!';
-// ro_bar2[3] = 'noooooo!';
-// Index signature in type 'readonly string[]' only permits reading.
-
-
-/**
- * Readonly objects
- */
-
-interface A {
-    name: string;
-    size: number;
-}
-
-const readonlyAVar: Readonly<A> = {
-    name: 'sdf',
-    size: 23
-};
-
-// readonlyAVar.name = 'sdf';

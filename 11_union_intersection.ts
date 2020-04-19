@@ -2,90 +2,119 @@
  * Объединения и пересечения типов
  */
 
-/**
- * Объединение типов - union
+
+
+ /**
+ * Примитивы
  */
 
 
 
 
 
-/**
- * Объединение примитивных типов
- */
-
-
-let stringOrNumber: string | number = 'string initializer';
-
-stringOrNumber = 4;
-
-// stringOrNumber = null;
-// работает флаг --strictNullChecks
-
 
 
 
 
 /**
- * Пересечение типов (type intersection)
+ * Объединение типов - type union
  *
- * Переменная такого типа должна соответствовать всем пересечённым типам
- *
- * type A = B & C;
- * let a: A; <======= a является одновременно переменной типа B и переменной типа C
+ * Переменная должна соответствовать одному из пересекаемых типов
  */
+let stringOrNumber: string | undefined = 'string initializer';
+
+stringOrNumber = undefined;
+
+
+
+
 
 
 
 
 /**
- * Пересечение литеральных типов
+ * Пересечение литеральных и примитивных типов бессмысленно
+ * Результат пересечения - тип never
  */
 
-let a: 'yes' & 'no';
-
-// a = 'yes';
-// ошибка
+let a: 'yes' & 'no' = 'yes';
+let b: string & number = 4;
 
 
-// let b: string & number = 4;
-// ошибка
 
 
 
 /**
- * Пересечение структурных типов
+ * Структурные типы
  */
 
-interface Colored {
-    color: string;
+
+
+/**
+ * Пересечения и объединения структурных типов
+ */
+
+
+interface ResponseStatusSuccess {
+    status: 'OK';
 }
 
-interface Visible {
-    visible: boolean;
-}
-
-interface Size {
-    height: number;
-    width: number;
-    deep: number;
+interface ResponsePayload<P> {
+    payload: P;
 }
 
 
-interface ColoredVisibleSizeIntersection extends Colored, Visible, Size {};
+/**
+ * Пересечение типов - результат соответствует всем пересекаемым типам
+ * т.е. должен содержать все поля обоих типов
+ */
+type ResponseSuccess<P> = ResponseStatusSuccess & ResponsePayload<P>;
 
 
-// должна содержать все поля типов, которые есть в пересечении
-let coloredVisibleSizeIntersection: ColoredVisibleSizeIntersection = {
-    color: 'sdf',
-    visible: false, // never в случае одинаковых полей разных типов
-    height: 1,
-    width: 2,
-    deep: 3
-};
+interface ResponseStatusFailure {
+    status: 'ERROR';
+    code: number;
+}
 
 
-coloredVisibleSizeIntersection.width;
+/**
+ * Объединение типов - результат должен соответствовать одному из пересекаемых типов
+ * т.е. содержать или все поля одного из типов
+ */
+type ResponseBase<P> = ResponseSuccess<P> | ResponseStatusFailure;
 
 
 
+/**
+ * Создаём новый тип на основе базового - ответ со строкой в payload
+ */
+type UserNameResponse = ResponseBase<string>;
+
+
+declare function fetchUserName(id: number): UserNameResponse;
+
+
+const userResponse = fetchUserName(1);
+
+if (userResponse.status === 'OK') {
+    // Если статус OK - значит есть payload
+    console.log('User name: ', userResponse.payload)
+} else {
+    // Иначе есть код ошибки
+    console.log('Error code: ', userResponse.code);
+}
+
+
+
+
+
+
+/**
+ * Пересечение типов при использовании Object.assign()
+ */
+const newObject = Object.assign({}, {
+    a: 1,
+    b: 2,
+}, {
+    c: 3,
+})

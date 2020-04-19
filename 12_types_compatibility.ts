@@ -10,30 +10,18 @@
  */
 
 
-type FirstString = string;
-type SecondString = string;
-
-let str1: FirstString = 'hey!';
-let str2: SecondString = 'ho!';
-
-// Типы переменных имеют разное название но одинаковую структуру
-str1 = str2;
-
-
-
-
-/**
- * Другой пример
- */
-
 type sec = number;
 type ms = number;
 
-let seconds: sec = 1;
 let milliseconds: ms = 1000;
 
-// seconds = milliseconds;
-// Будет ли ошибка?
+let seconds: sec = milliseconds;
+// Нет ошибки несоответствия типов, но есть логическая ошибка
+
+
+
+
+
 
 
 
@@ -41,58 +29,29 @@ let milliseconds: ms = 1000;
 
 
 /**
- * Nominal typing
+ * Пример структурной типизации для объектов
  */
 
-// https://github.com/microsoft/TypeScript/pull/33038
-// Nominal `unique type` brands
+// Объявим тип Employer и интерфейс Man с одинаковой структурой
+type Employer = {
+    name: string;
+    age: number;
+}
 
+interface Man {
+    name: string;
+    age: number;
+}
 
-// type NormalizedPath = unique string;
-// type AbsolutePath = unique string;
-// type NormalizedAbsolutePath = NormalizedPath & AbsolutePath;
+// присвоим переменной типа Employer некоторое значение
+let emp: Employer = {
+    name: 'John',
+    age: 23,
+}
 
-// declare function isNormalizedPath(x: string): x is NormalizedPath;
-// declare function isAbsolutePath(x: string): x is AbsolutePath;
-// declare function consumeNormalizedAbsolutePath(x: NormalizedAbsolutePath): void;
-
-
-// const p = "/a/b/c";
-// if (isNormalizedPath(p)) {
-//     if (isAbsolutePath(p)) {
-//         consumeNormalizedAbsolutePath(p);
-//     }
-// }
-
-
-
-
-// https://github.com/microsoft/TypeScript/pull/33290
-// Structural `tag type` brands
-
-
-// type NormalizedPath = string & tag {NormalizedPath: void};
-// type AbsolutePath = string & tag {AbsolutePath: void};
-// type NormalizedAbsolutePath = NormalizedPath & AbsolutePath;
-
-// declare function isNormalizedPath(x: string): x is NormalizedPath;
-// declare function isAbsolutePath(x: string): x is AbsolutePath;
-// declare function consumeNormalizedAbsolutePath(x: NormalizedAbsolutePath): void;
-
-
-// const p = "/a/b/c";
-// if (isNormalizedPath(p)) {
-//     if (isAbsolutePath(p)) {
-//         consumeNormalizedAbsolutePath(p);
-//     }
-// }
-
-// type NormalizedPath = string & Tag<"NormalizedPath">;
-// type AbsolutePath = string & Tag<"AbsolutePath">;
-// type NormalizedAbsolutePath = NormalizedPath & AbsolutePath;
-
-
-
+// переменной типа Man можно присвоить значение переменной типа Employer
+// т.к структура типов соответствует
+const man: Man = emp;
 
 
 
@@ -101,19 +60,9 @@ let milliseconds: ms = 1000;
 /**
  * Пример интерфейса и класса с одинаковой структурой
  */
-
-interface Named {
-    name: string;
-}
-
 class Person {
-    name: string = 'Alex';
+    name: string = 'John';
+    age: number = 34;
 }
 
-let p: Named;
-p = new Person();
-
-
-
-
-
+let p: Man = new Person();

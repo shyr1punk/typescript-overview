@@ -5,42 +5,16 @@
  * Самое частое применение - типизация объектов
  */
 
-interface LabelledValue {
-    label: string;
+interface NewUser {
+    name: string;
+    born?: number;
 }
 
-function printLabel(labelledObj: LabelledValue) {
-    console.log(labelledObj.label);
+function getUserAge(user: NewUser) {
+    return user.born ?
+        new Date().getFullYear() - user.born :
+        undefined;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Function Types
- *
- * Описание интерфейса функции
- */
-
-interface SearchFunc {
-    (source: string, subString: string): boolean;
-}
-
-let mySearch: SearchFunc = function(source, subString) {
-    let result = source.search(subString);
-
-    return result > -1;
-}
-
 
 
 
@@ -59,7 +33,7 @@ let mySearch: SearchFunc = function(source, subString) {
 
 interface SomeInterface {
     add(a: number, b: number): number;
-    // foo(): void;
+    // foo(): void; // после добавления нового поля в интерфейс имплементация перестанет соответствовать интерфейсу
 }
 
 class SomeClass implements SomeInterface {
@@ -94,9 +68,18 @@ const book: Book = {
 
 
 /**
- * Type alias для структурных типов
+ * Interface vs Type alias
  *
  * В большинстве случаем псевдоним структурного типа совместим с интерфейсом с такой-же структурой
+ *
+ *
+ * Отличия:
+ *
+ * Type alias:
+ *  - можно создавать для примитивов, объединений и пересечений
+ *
+ * Interfaces:
+ *  - интерфейсы с одинаковым именем в одной области видимости объединяются
  */
 type Square = {
     readonly kind: "square";
@@ -113,3 +96,47 @@ const asd: Square = {
     size: 3
 }
 // asd.kind = "";
+
+
+
+
+
+
+/**
+ * Interface merging
+ *
+ * @see https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-interfaces
+ */
+
+// Опасный пример объединения интерфейсов и класса с одним именем
+interface Developer {
+    level: number;
+}
+
+interface Developer {
+    skills: 'awesome';
+}
+
+const developer: Developer = {
+    level: 80,
+    skills: 'awesome'
+}
+
+
+
+// class Developer {
+//     getOne() {
+//         return 1;
+//     }
+// }
+
+
+
+
+
+// Полезный пример - можно расширять глобальный интерфейс
+interface Window {
+    webkitAudioContext: typeof AudioContext;
+}
+
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
